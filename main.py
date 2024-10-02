@@ -38,7 +38,7 @@ def read_temp():
 @app.route('/')
 def index():
         temp = read_temp()
-        object = ('{ "temp":"%s", "nonsense":"definetly"}' % [temp])
+        object = ('{ "temp":"%s", "nonsense":"definetly"}' % temp)
         return json.loads(object)
 
 if __name__ == '__main__':
