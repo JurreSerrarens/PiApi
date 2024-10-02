@@ -8,22 +8,8 @@ import time
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
- 
-
-
 app = Flask(__name__)
 wiringpi.wiringPiSetupGpio() 
-
-@app.route('/')
-def index():
-        temp = read_temp()
-        object = ('{ "temp":"%s", "nonsense":"definetly"}' % [temp])
-        return json.loads(object)
-
-if __name__ == '__main__':
-        app.run(debug=True, host='0.0.0.0')
-
-
 
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
@@ -46,3 +32,17 @@ def read_temp():
         temp_c = float(temp_string) / 1000.0
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_c, temp_f
+
+
+
+@app.route('/')
+def index():
+        temp = read_temp()
+        object = ('{ "temp":"%s", "nonsense":"definetly"}' % [temp])
+        return json.loads(object)
+
+if __name__ == '__main__':
+        app.run(debug=True, host='0.0.0.0')
+
+
+
