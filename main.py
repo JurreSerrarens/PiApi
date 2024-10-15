@@ -51,7 +51,7 @@ def index():
         return json.loads(object)
 
 @app.route('/humidity')
-def index():
+def humidity():
         try:
             # Print the values to the serial port
             temperature_c = sensor.temperature
