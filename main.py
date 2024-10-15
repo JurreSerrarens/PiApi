@@ -71,6 +71,11 @@ def humidity():
         except Exception as error:
             sensor.exit()
             raise error
+
+
+@app.route('/hello')
+def hello():
+    return 'Hello, World'
         
 
 if __name__ == '__main__':
