@@ -52,6 +52,8 @@ def index():
 
 @app.route('/humidity')
 def humidity():
+        object = '{"nonsense":"no :("}'
+        return json.loads(object)
         try:
             # Print the values to the serial port
             temperature_c = sensor.temperature
@@ -69,7 +71,6 @@ def humidity():
         except Exception as error:
             sensor.exit()
             raise error
-        
         
 
 if __name__ == '__main__':
