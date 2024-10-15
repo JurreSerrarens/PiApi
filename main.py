@@ -64,12 +64,13 @@ def humidity():
         except RuntimeError as error:
             # Errors happen fairly often, DHT's are hard to read, just keep going
             print(error.args[0])
+            object = '{"nonsense":"no :("}'
+            return json.loads(object)
         except Exception as error:
             sensor.exit()
             raise error
         
-        object = '{"nonsense":"no :("}'
-        return json.loads(object)
+        
 
 if __name__ == '__main__':
         app.run(debug=True, host='0.0.0.0')
