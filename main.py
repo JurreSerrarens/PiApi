@@ -67,6 +67,9 @@ def index():
         except Exception as error:
             sensor.exit()
             raise error
+        
+        object = '{"nonsense":"no :("}'
+        return json.loads(object)
 
 if __name__ == '__main__':
         app.run(debug=True, host='0.0.0.0')
