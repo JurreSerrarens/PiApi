@@ -48,7 +48,7 @@ async def read_dht():
     temperature_c = sensor.temperature
     #temperature_f = temperature_c * (9 / 5) + 32
     humidity = sensor.humidity
-    print("Temp={0:0.1f}ºC, Humidity={2:0.1f}%".format(temperature_c, humidity))
+    #print("Temp={0:0.1f}ºC, Humidity={2:0.1f}%".format(temperature_c, humidity))
 
     return temperature_c,  humidity
 
