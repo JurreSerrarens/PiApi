@@ -21,9 +21,9 @@ sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(13, GPIO.OUT)
+GPIO.setup(29, GPIO.OUT)
 
 
 app = Flask(__name__)
@@ -86,7 +86,7 @@ async def humidity():
 
 @app.route('/hello')
 def hello():
-    GPIO.output(13, GPIO.HIGH)
+    GPIO.output(29, GPIO.HIGH)
     object = '{"nonsense":"no :("}'
     return json.loads(object)
         
