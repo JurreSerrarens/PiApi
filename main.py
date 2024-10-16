@@ -21,7 +21,7 @@ sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 GPIO.setup(13, GPIO.OUT)
 
