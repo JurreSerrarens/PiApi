@@ -85,12 +85,13 @@ async def humidity():
 
 
 @app.route('/motoron')
-def hello():
+def motoron():
     GPIO.output(21, GPIO.HIGH)
     object = '{"status":"success"}'
     return json.loads(object)
+
 @app.route('/motoroff')
-def hello():
+def motoroff():
     GPIO.output(21, GPIO.LOW)
     object = '{"status":"success"}'
     return json.loads(object)
