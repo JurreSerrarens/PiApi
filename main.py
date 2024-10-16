@@ -71,12 +71,12 @@ async def humidity():
     
     except TimeoutError as err:
         print(err.args[0])
-        object = '{"status":"timeout"}'
+        object = '{"nonsense":"no :(", "status":"timeout"}'
         return json.loads(object)
     
     except RuntimeError as err:
         print(err.args[0])
-        object = '{"nonsense":"no :("}'
+        object = ('{"nonsense":"no :(", "status":"%s"}' % err.args)
         return json.loads(object)
 
 
