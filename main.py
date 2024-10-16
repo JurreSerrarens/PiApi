@@ -23,6 +23,9 @@ os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 GPIO.setmode(GPIO.BCM)
 
+GPIO.setup(13, GPIO.OUT)
+
+
 app = Flask(__name__)
 
 #Temp Read Code
@@ -83,6 +86,7 @@ async def humidity():
 
 @app.route('/hello')
 def hello():
+    GPIO.output(13, GPIO.HIGH)
     object = '{"nonsense":"no :("}'
     return json.loads(object)
         
