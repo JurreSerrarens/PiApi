@@ -64,6 +64,7 @@ def index():
 async def humidity():
     try:
         result = await asyncio.wait_for(read_dht(),timeout=7)
+        print(result)
         object = ('{ "temp":"{0:0.1f}", "humidity":"{2:0.1f}" "nonsense":"definetly"}'.format(result.temperature_c, result.humidity))
         print(object)
 
