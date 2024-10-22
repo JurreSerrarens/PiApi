@@ -113,6 +113,9 @@ def settime():
 
 
 def clock():
+    global minute 
+    global hour
+    
     while True:
         print(time.strftime("%H:%M"))
         print(hour,":",minute)
