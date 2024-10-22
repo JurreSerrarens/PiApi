@@ -63,6 +63,7 @@ async def read_dht():
 def clock():
     global hour
     global minute
+    global activated
     while True:
         print(time.strftime("%H:%M")," | ",hour,":",minute)
 
