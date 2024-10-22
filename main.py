@@ -72,7 +72,7 @@ def clock():
                 print("WEEWOOWEEWOO")
                 activated = True
         else:
-            activated = not (hour != time.hour or minute != time.minute)
+            activated = not (hour != int(time.strftime("%H")) or minute != (time.strftime("%M")))
 
         time.sleep(2) 
 
