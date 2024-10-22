@@ -67,7 +67,7 @@ def clock():
     while True:
         print(int(time.strftime("%H")),":",int(time.strftime("%M"))," | ",hour,":",minute)
 
-        if(activated):
+        if(not activated):
             if(hour == int(time.strftime("%H")) and minute == int(time.strftime("%M"))):
                 print("WEEWOOWEEWOO")
                 activated = True
