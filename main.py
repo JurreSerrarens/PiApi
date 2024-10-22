@@ -113,10 +113,10 @@ def settime():
 
 
 def clock():
-    global minute 
-    global hour
-    
     while True:
+        global minute 
+        global hour
+        
         print(time.strftime("%H:%M"))
         print(hour,":",minute)
         time.sleep(2) 
