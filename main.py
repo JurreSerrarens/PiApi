@@ -102,7 +102,8 @@ def clock():
         time.sleep(1) 
 
 if __name__ == '__main__':
-    t1 = threading.Thread(clock)
+    t1 = threading.Thread(target=clock)
+    t1.start()
     app.run(debug=True, host='0.0.0.0')
 
 
