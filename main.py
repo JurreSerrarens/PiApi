@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 import json
 import os
 import glob
@@ -16,6 +17,9 @@ PIN_B = 28
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
+
+hour = 12
+minute = 0
 
 sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
@@ -96,9 +100,16 @@ def motoroff():
     object = '{"status":"success"}'
     return json.loads(object)
 
+@app.route('/setTime')
+def settime():
+    minute = request.args.get('min')
+    hour = request.args.get('hour')
+
+
 def clock():
     while True:
         print(time.strftime("%H:%M"))
+        print(hour,":",minute)
         time.sleep(1) 
 
 if __name__ == '__main__':
