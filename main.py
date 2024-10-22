@@ -110,7 +110,7 @@ def settime():
     minute = request.args.get('min')
     hour = request.args.get('hour')
 
-    if t1.is_alive:
+    if t1.is_alive():
         t1.join()
     t1 = threading.Thread(target=clock,args=[hour,minute])
     t1.start()
