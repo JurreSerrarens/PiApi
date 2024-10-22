@@ -22,6 +22,7 @@ sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
 minute = 0
 hour = 12
+activated = False
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -63,13 +64,20 @@ def clock():
     global hour
     global minute
     while True:
-        #print(time.strftime("%H:%M"))
-        print(hour,":",minute)
+        print(time.strftime("%H:%M")," | ",hour,":",minute)
+
+        if(activated):
+            if(hour == time.hour and minute == time.minute):
+                print("WEEWOOWEEWOO")
+                activated = True
+        else:
+            activated = not (hour != time.hour or minute != time.minute)
+
         time.sleep(2) 
 
 t1 = threading.Thread(target=clock)
 
-#API
+#Data
 @app.route('/')
 def index():
     temp = read_temp()
@@ -96,7 +104,7 @@ async def humidity():
         object = ('{"nonsense":"no :(", "status":"%s"}' % err.args)
         return json.loads(object)
 
-
+#Actions
 @app.route('/motoron')
 def motoron():
     GPIO.output(21, GPIO.HIGH)
@@ -126,7 +134,7 @@ def settime():
     return json.loads(object)
 
 if __name__ == '__main__':
-    #t1 = threading.Thread(target=clock)
+    #t1 = threading.Thread(target=clock) caused two threads smh
     #t1.start()
 
     app.run(debug=True, host='0.0.0.0')
