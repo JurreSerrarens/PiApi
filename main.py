@@ -4,7 +4,7 @@ import os
 import glob
 import time
 import asyncio
-import random
+import threading
 
 import RPi.GPIO as GPIO
 import board
@@ -95,12 +95,15 @@ def motoroff():
     GPIO.output(21, GPIO.LOW)
     object = '{"status":"success"}'
     return json.loads(object)
-        
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
-
+def clock():
     while True:
         print(time.strftime("%H:%M"))
-        time.sleep(1)
+        time.sleep(1) 
+
+if __name__ == '__main__':
+    t1 = threading.Thread(clock)
+    app.run(debug=True, host='0.0.0.0')
+
+
 
