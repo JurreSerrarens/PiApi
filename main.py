@@ -18,9 +18,6 @@ base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
 
-hour = 12
-minute = 0
-
 sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
 os.system('modprobe w1-gpio')
@@ -59,6 +56,14 @@ async def read_dht():
 
     return temperature_c,  humidity
 
+
+def clock(hour,minute):
+    while True:
+        #print(time.strftime("%H:%M"))
+        print(hour,":",minute)
+        time.sleep(2) 
+
+t1 = threading.Thread(target=clock)
 
 #API
 @app.route('/')
@@ -102,28 +107,19 @@ def motoroff():
 
 @app.route('/setTime')
 def settime():
-    global minute 
-    global hour
-
+    global t1
     minute = request.args.get('min')
     hour = request.args.get('hour')
+    
+    t1.join()
+    t1 = threading.Thread(target=clock,args=[hour,minute])
+    t1.start()
     
     object = '{"status":"success"}'
     return json.loads(object)
 
-
-def clock():
-    while True:
-        global minute 
-        global hour
-
-        #print(time.strftime("%H:%M"))
-        print(hour,":",minute)
-        time.sleep(2) 
-
 if __name__ == '__main__':
-    t1 = threading.Thread(target=clock)
-    #t1.start()
+    t1.start()
     app.run(debug=True, host='0.0.0.0')
 
 
