@@ -102,8 +102,12 @@ def motoroff():
 
 @app.route('/setTime')
 def settime():
+    global minute 
+    global hour
+
     minute = request.args.get('min')
     hour = request.args.get('hour')
+    
     object = '{"status":"success"}'
     return json.loads(object)
 
@@ -112,7 +116,7 @@ def clock():
     while True:
         print(time.strftime("%H:%M"))
         print(hour,":",minute)
-        time.sleep(1) 
+        time.sleep(2) 
 
 if __name__ == '__main__':
     t1 = threading.Thread(target=clock)
