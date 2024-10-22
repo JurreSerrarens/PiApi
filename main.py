@@ -20,8 +20,8 @@ device_file = device_folder + '/w1_slave'
 
 sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
-minute = 0
-hour = 12
+minute = -1
+hour = -1
 activated = False
 
 os.system('modprobe w1-gpio')
@@ -128,7 +128,9 @@ def settime():
     global t1
     global hour
     global minute
+    global activated
 
+    activated = False
     hour = request.args.get('hour')
     minute = request.args.get('min')
 
@@ -137,6 +139,14 @@ def settime():
         t1.start()
     
     object = '{"status":"success"}'
+    return json.loads(object)
+
+@app.route('/getTime')
+def gettime():
+    global hour
+    global minute
+    
+    object = ('{"status":"success", hour: %s, minute: %s}' % [hour,minute])
     return json.loads(object)
 
 if __name__ == '__main__':
