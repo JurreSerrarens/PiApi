@@ -15,7 +15,7 @@ PIN_B = 28
 
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
-devices = glob.glob(base_dir)
+device_file = device_folder + '/w1_slave'
 
 sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 
@@ -98,5 +98,4 @@ def motoroff():
         
 
 if __name__ == '__main__':
-        print(devices)
         app.run(debug=True, host='0.0.0.0')
