@@ -70,8 +70,8 @@ def clock():
         print(cHour,":",cMinute," | ",hour,":",minute)
 
         if(not activated):
-            print("n o ",hour == cHour,"-",minute == cMinute)
-            if(hour == cHour and minute == cMinute):
+            print("n o ",int(hour) == cHour,"-",int(minute) == cMinute)
+            if(int(hour) == cHour and int(minute) == cMinute):
                 print("WEEWOOWEEWOO")
                 activated = True
         else:
