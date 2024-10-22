@@ -147,10 +147,11 @@ def gettime():
     global minute
     
     if(minute < 0 or hour < 0):
-        object = '{"status":"no time set", hour: -1, minute: -1}'
+        object = '{"status":"no time set", "hour": -1, "minute": -1}'
         return json.loads(object)
     
-    object = ('{"status":"success", hour: %s, minute: %s}' % [hour,minute])
+    #Could be put in a sub property like "Time"
+    object = ('{"status":"success", "hour": %s, "minute": %s}' % [hour,minute])
     return json.loads(object)
 
 if __name__ == '__main__':
