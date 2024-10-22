@@ -104,6 +104,8 @@ def motoroff():
 def settime():
     minute = request.args.get('min')
     hour = request.args.get('hour')
+    object = '{"status":"success"}'
+    return json.loads(object)
 
 
 def clock():
