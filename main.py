@@ -73,9 +73,11 @@ def clock():
             print("n o ",int(hour) == cHour,"-",int(minute) == cMinute)
             if(int(hour) == cHour and int(minute) == cMinute):
                 print("WEEWOOWEEWOO")
+                motoron()
                 activated = True
-        else:
-            activated = not (hour != cHour or minute != cMinute)
+        elif not (hour == cHour and minute == cMinute):
+            motoroff()
+            activated = False
 
         time.sleep(2) 
 
