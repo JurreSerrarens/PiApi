@@ -65,15 +65,17 @@ def clock():
     global minute
     global activated
     while True:
-        print(int(time.strftime("%H")),":",int(time.strftime("%M"))," | ",hour,":",minute)
+        cMinute = int(time.strftime("%M"))
+        cHour = int(time.strftime("%H"))
+        print(cHour,":",cMinute," | ",hour,":",minute)
 
         if(not activated):
-            print("n o ")
-            if(hour == int(time.strftime("%H")) and minute == int(time.strftime("%M"))):
+            print("n o ",hour == cHour,"-",minute == cMinute)
+            if(hour == cHour and minute == cMinute):
                 print("WEEWOOWEEWOO")
                 activated = True
         else:
-            activated = not (hour != int(time.strftime("%H")) or minute != int(time.strftime("%M")))
+            activated = not (hour != cHour or minute != cMinute)
 
         time.sleep(2) 
 
