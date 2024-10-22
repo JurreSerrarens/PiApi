@@ -98,8 +98,9 @@ def motoroff():
         
 
 if __name__ == '__main__':
-        app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
 
-while True:
-    print(time.strftime("%H:%M"))
-    time.sleep(1)
+    while True:
+        print(time.strftime("%H:%M"))
+        time.sleep(1)
+
