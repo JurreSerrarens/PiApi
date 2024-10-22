@@ -117,12 +117,12 @@ def clock():
         global minute 
         global hour
 
-        print(time.strftime("%H:%M"))
+        #print(time.strftime("%H:%M"))
         print(hour,":",minute)
         time.sleep(2) 
 
 if __name__ == '__main__':
-    #t1 = threading.Thread(target=clock)
+    t1 = threading.Thread(target=clock)
     #t1.start()
     app.run(debug=True, host='0.0.0.0')
 
