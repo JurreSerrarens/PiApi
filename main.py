@@ -146,7 +146,7 @@ def gettime():
     global hour
     global minute
     
-    if(minute < 0 or hour < 0):
+    if(int(minute) < 0 or int(hour) < 0):
         object = '{"status":"no time set", "hour": -1, "minute": -1}'
         return json.loads(object)
     
