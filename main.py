@@ -138,7 +138,7 @@ def settime():
         t1 = threading.Thread(target=clock)
         t1.start()
     
-    object = ('{"status":"success", "hour": "%s", "minute": "%s"}' % [hour,minute])
+    object = ('{"status":"success", "hour": "%s", "minute": "%s"}' % hour,minute)
     return json.loads(object)
 
 @app.route('/getTime')
@@ -151,7 +151,7 @@ def gettime():
         return json.loads(object)
     
     #Could be put in a sub property like "Time"
-    object = ('{"status":"success", "hour": "%s", "minute": "%s"}' % [hour,minute])
+    object = ('{"status":"success", "hour": "%s", "minute": "%s"}' % hour,minute)
     return json.loads(object)
 
 if __name__ == '__main__':
