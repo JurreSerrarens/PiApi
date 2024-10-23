@@ -23,7 +23,7 @@ sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 minute = -1
 hour = -1
 activated = False
-amount = 8
+amount = 16
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -75,7 +75,7 @@ def clock():
                 print("WEEWOOWEEWOO")
                 motoron()
                 activated = True
-                time.sleep(amount)
+                time.sleep(amount * (read_temp()/50))
                 
                 motoroff()
                 print("Rest in pepperoni's weewoo")
@@ -128,7 +128,7 @@ def motoroff():
     return json.loads(object)
 
 @app.route('/setTime')
-def settime():
+def setTime():
     global t1
     global hour
     global minute
@@ -146,7 +146,7 @@ def settime():
     return json.loads(object)
 
 @app.route('/getTime')
-def gettime():
+def getTime():
     global hour
     global minute
     
@@ -157,6 +157,12 @@ def gettime():
     #Could be put in a sub property like "Time"
     object = '{"status":"success", "hour": "%s", "minute": "%s"}' % (hour,minute)
     return json.loads(object)
+
+
+@app.route('setAmount')
+def setAmount():
+    global amount
+    amount = request.args.get('amount')
 
 if __name__ == '__main__':
     #t1 = threading.Thread(target=clock) caused two threads smh
