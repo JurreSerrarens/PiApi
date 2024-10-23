@@ -79,12 +79,9 @@ def clock():
                 
                 motoroff()
                 print("Rest in pepperoni's weewoo")
-                activated = False
-
-        # elif not (int(hour) == cHour and int(minute) == cMinute):
-        #     motoroff()
-        #     print("Rest in pepperoni's weewoo")
-        #     activated = False
+        elif not (int(hour) == cHour and int(minute) == cMinute):
+            print("Alarm rest")
+            activated = False
 
         time.sleep(2) 
 
