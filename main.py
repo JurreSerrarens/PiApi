@@ -138,8 +138,8 @@ def settime():
         t1 = threading.Thread(target=clock)
         t1.start()
     
-    #object = '{"status":"success"}'
-    return gettime()
+    object = ('{"status":"success", "hour": "%s", "minute": "%s"}' % [hour,minute])
+    return json.loads(object)
 
 @app.route('/getTime')
 def gettime():
