@@ -159,7 +159,7 @@ def getTime():
     return json.loads(object)
 
 
-@app.route('setAmount')
+@app.route('/setAmount')
 def setAmount():
     global amount
     amount = request.args.get('amount')
