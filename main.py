@@ -23,6 +23,7 @@ sensor = adafruit_dht.DHT11(board.D26, use_pulseio=True)
 minute = -1
 hour = -1
 activated = False
+amount = 8
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -74,10 +75,16 @@ def clock():
                 print("WEEWOOWEEWOO")
                 motoron()
                 activated = True
-        elif not (int(hour) == cHour and int(minute) == cMinute):
-            motoroff()
-            print("Rest in pepperoni's weewoo")
-            activated = False
+                time.sleep(amount)
+                
+                motoroff()
+                print("Rest in pepperoni's weewoo")
+                activated = False
+
+        # elif not (int(hour) == cHour and int(minute) == cMinute):
+        #     motoroff()
+        #     print("Rest in pepperoni's weewoo")
+        #     activated = False
 
         time.sleep(2) 
 
