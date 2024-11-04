@@ -165,7 +165,7 @@ def setAmount():
     amount = request.args.get('amount')
 
 @app.route('/getAmount') 
-def setAmount():
+def getAmount():
     global amount
     object = '{"status":"success", "amount": "%s"}' % (amount)
     return json.loads(object)
