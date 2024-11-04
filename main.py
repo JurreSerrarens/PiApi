@@ -75,12 +75,12 @@ def clock():
                 print("WEEWOOWEEWOO")
                 motoron()
                 activated = True
-                time.sleep(amount * (read_temp()/50))
+                time.sleep(amount * ((read_temp()/40) * 2.0))
                 
                 motoroff()
                 print("Rest in pepperoni's weewoo")
         elif not (int(hour) == cHour and int(minute) == cMinute):
-            print("Alarm rest")
+            print("Alarm reset")
             activated = False
 
         time.sleep(2) 
@@ -163,6 +163,13 @@ def getTime():
 def setAmount():
     global amount
     amount = request.args.get('amount')
+
+@app.route('/getAmount') 
+def setAmount():
+    global amount
+    object = '{"status":"success", "amount": "%s"}' % (amount)
+    return json.loads(object)
+
 
 if __name__ == '__main__':
     #t1 = threading.Thread(target=clock) caused two threads smh
