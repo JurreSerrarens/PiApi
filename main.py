@@ -78,6 +78,7 @@ def clock():
                 print("WEEWOOWEEWOO")
                 motoron()
                 activated = True
+                print("Water amount: ",amount * ((read_temp()/40.0) * 2.0))
                 time.sleep(amount * ((read_temp()/40.0) * 2.0))
                 
                 motoroff()
