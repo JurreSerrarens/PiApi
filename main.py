@@ -25,6 +25,9 @@ hour = -1
 activated = False
 amount = 16
 
+MIN_TEMP = 15
+MAX_TEMP = 50
+
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 GPIO.setmode(GPIO.BCM)
@@ -75,7 +78,7 @@ def clock():
                 print("WEEWOOWEEWOO")
                 motoron()
                 activated = True
-                time.sleep(amount * ((read_temp()/40) * 2.0))
+                time.sleep(amount * ((read_temp()/40.0) * 2.0))
                 
                 motoroff()
                 print("Rest in pepperoni's weewoo")
